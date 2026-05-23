@@ -86,3 +86,5 @@ Deploy the project:
 ```bash
 npm run deploy
 ```
+Open it via link:
+https://hiinomaru.github.io/Communicating_AI_CS/
