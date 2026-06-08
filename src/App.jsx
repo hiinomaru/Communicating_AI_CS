@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import ProjectCard from "./components/ProjectCard";
 import { projects } from "./data/projects";
 import styled from "styled-components";
-
+import TeamGrid from "./components/TeamGrid";
+import { teamMembers } from "./data/teamMembers";
 const ProjectsGrid = styled.div`
   display: grid;
   gap: 20px;
@@ -42,6 +43,7 @@ export default function App() {
           />
         ))}
       </ProjectsGrid>
+      <TeamGrid members={teamMembers} />
       <Footer />
     </div>
   );
