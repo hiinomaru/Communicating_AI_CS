@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -7,7 +6,8 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin: 40px;
+  padding: 40px;
+  background: #0f172a;
 `;
 
 const StyledTitle = styled.div`
@@ -30,9 +30,8 @@ const StyledLink = styled.a`
 
 const navigationLinks = [
   { name: "Home", url: "/" },
-  { name: "Projects", url: "/projects" },
   { name: "About", url: "/about" },
-  { name: "Contact", url: "/contact" },
+  { name: "Contacts", url: "/contacts" },
 ];
 
 const Header = () => {
@@ -47,8 +46,8 @@ const Header = () => {
     <StyledHeader>
       <StyledTitle>AI&CS Projects</StyledTitle>
       <StyledNavigationBar>
-        {navigationLinks.map((link, index) => (
-          <StyledLink key={index} onClick={() => handleLinkClick(link.url)}>
+        {navigationLinks.map((link) => (
+          <StyledLink key={link.name} onClick={() => handleLinkClick(link.url)}>
             {link.name}
           </StyledLink>
         ))}

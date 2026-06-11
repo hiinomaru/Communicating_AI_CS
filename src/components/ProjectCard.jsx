@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: block;
@@ -37,15 +37,17 @@ const ProjectImage = styled.img`
   margin-bottom: 12px;
 `;
 
-const onCardTitleClick = (url) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
+const ProjectCard = ({ name, description, uri, image }) => {
+  const navigate = useNavigate();
 
-const ProjectCard = ({ name, description, url, image }) => {
+  const onCardTitleClick = (uri) => {
+    navigate(`/projects/${uri}`);
+  };
+
   return (
     <CardContainer>
       {image ? <ProjectImage src={image} alt={name} /> : null}
-      <ProjectName onClick={() => onCardTitleClick(url)}>{name}</ProjectName>
+      <ProjectName onClick={() => onCardTitleClick(uri)}>{name}</ProjectName>
       <ProjectDescription>{description}</ProjectDescription>
     </CardContainer>
   );
