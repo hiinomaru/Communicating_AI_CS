@@ -25,12 +25,40 @@ const ProjectsGrid = styled.div`
   }
 `;
 
+const AboutSection = styled.section`
+  padding: 40px 40px 0;
+`;
+
+const AboutContent = styled.div`
+  max-width: 760px;
+  margin: 24px auto 0;
+  text-align: left;
+  line-height: 1.7;
+  color: #cbd5e1;
+
+  p + p {
+    margin-top: 16px;
+  }
+`;
+
 export default function Home() {
   return (
-    <Page>
-      <h1>I spy with my little AI</h1>
+    <Page id="top">
+      <AboutSection id="about">
+        <h1>I spy with my little AI</h1>
+        <AboutContent>
+          <p>
+            Communicating AI & CS showcases projects built around artificial
+            intelligence, computer science, and practical problem solving.
+          </p>
+          <p>
+            The goal is to present projects and team members in a simple,
+            navigable interface.
+          </p>
+        </AboutContent>
+      </AboutSection>
 
-      <ProjectsGrid>
+      <ProjectsGrid id="projects">
         {projects.map((p, i) => (
           <ProjectCard
             key={i}
@@ -44,7 +72,7 @@ export default function Home() {
         ))}
       </ProjectsGrid>
 
-      <TeamGrid members={teamMembers} />
+      <TeamGrid id="team" members={teamMembers} />
     </Page>
   );
 }

@@ -35,9 +35,9 @@ const Grid = styled.div`
   }
 `;
 
-export default function TeamGrid({ members }) {
+export default function TeamGrid({ id, members }) {
   return (
-    <Section>
+    <Section id={id}>
       <Container>
         <Title>Meet the Team Behind Communicating AI & CS</Title>
 

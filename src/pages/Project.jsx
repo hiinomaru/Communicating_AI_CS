@@ -70,25 +70,9 @@ const ProjectVideoContainer = styled.div`
   }
 `;
 
-const ProjectSlidesContainer = styled.div`
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 8px;
-  margin-top: 3rem;
-  margin-bottom: 8px;
-  background: #1e293b;
-  overflow: hidden;
-
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-`;
-
 const ProjectSlidesFallback = styled.a`
   display: inline-block;
-  margin-bottom: 24px;
+  margin-top: 8px;
   color: #94a3b8;
   font-size: 0.85rem;
 
@@ -118,7 +102,7 @@ const CarouselImageWrapper = styled.div`
 const CarouselImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: opacity 0.3s ease;
 `;
 
@@ -187,32 +171,29 @@ export default function Projects() {
   const project = projects.find((p) => p.uri === id);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  if (!project) {
-    return (
-      <Page>
-        <ProjectName>Project not found</ProjectName>
-      </Page>
-    );
-  }
+  useEffect(() => {
+    if (project) document.title = `${project.name} — AI&CS Projects`;
+    return () => {
+      document.title = "AI&CS Projects";
+    };
+  }, [project]);
 
   const handleNextSlide = () => {
-    if (project.slides && project.slides.length > 0) {
-      setCurrentSlide((prev) => (prev + 1) % project.slides.length);
+    if (project?.slides && project.slides.length > 0) {
+      setCurrentSlide((prev) => Math.min(prev + 1, project.slides.length - 1));
     }
   };
 
   const handlePrevSlide = () => {
-    if (project.slides && project.slides.length > 0) {
-      setCurrentSlide((prev) =>
-        prev === 0 ? project.slides.length - 1 : prev - 1
-      );
+    if (project?.slides && project.slides.length > 0) {
+      setCurrentSlide((prev) => Math.max(prev - 1, 0));
     }
   };
 
   // Keyboard navigation for carousel
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (project.slides && project.slides.length > 0) {
+      if (project?.slides && project.slides.length > 0) {
         if (e.key === "ArrowLeft") {
           handlePrevSlide();
         } else if (e.key === "ArrowRight") {
@@ -223,8 +204,15 @@ export default function Projects() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlide, project.slides, handleNextSlide, handlePrevSlide]);
+  }, [currentSlide, project?.slides, handleNextSlide, handlePrevSlide]);
 
+  if (!project) {
+    return (
+      <Page>
+        <ProjectName>Project not found</ProjectName>
+      </Page>
+    );
+  }
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -253,24 +241,6 @@ export default function Projects() {
         </ProjectVideoContainer>
       )}
 
-      {project.slidesUrl && (
-        <>
-          <ProjectSlidesContainer>
-            <iframe
-              src={resolveAssetPath(project.slidesUrl)}
-              title="Presentation slides"
-            />
-          </ProjectSlidesContainer>
-          <ProjectSlidesFallback
-            href={resolveAssetPath(project.slidesUrl)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open slides in a new tab ↗
-          </ProjectSlidesFallback>
-        </>
-      )}
-
       {project.website && (
         <ProjectWebsiteButton
           href={project.website}
@@ -286,7 +256,7 @@ export default function Projects() {
           <CarouselContainer>
             <CarouselImageWrapper>
               <CarouselImage
-                src={project.slides[currentSlide]}
+                src={resolveAssetPath(project.slides[currentSlide])}
                 alt={`Slide ${currentSlide + 1}`}
               />
               <SlideCounter>
@@ -297,12 +267,14 @@ export default function Projects() {
                   <NavButton
                     left
                     onClick={handlePrevSlide}
+                    disabled={currentSlide === 0}
                     aria-label="Previous slide"
                   >
                     ❮
                   </NavButton>
                   <NavButton
                     onClick={handleNextSlide}
+                    disabled={currentSlide === project.slides.length - 1}
                     aria-label="Next slide"
                   >
                     ❯
@@ -323,6 +295,16 @@ export default function Projects() {
                 />
               ))}
             </DotsContainer>
+          )}
+
+          {project.slidesPdf && (
+            <ProjectSlidesFallback
+              href={resolveAssetPath(project.slidesPdf)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download slides (PDF) ↗
+            </ProjectSlidesFallback>
           )}
         </div>
       )}

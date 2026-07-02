@@ -44,14 +44,37 @@ const ProjectImage = styled.img`
   margin-bottom: 12px;
 `;
 
-const ProjectVideo = styled.iframe`
-  width: 100%;
-  height: 10rem;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  border: none;
-  background: #000;
+const ProjectVideoThumbWrapper = styled.div`
+  position: relative;
+  cursor: pointer;
 `;
+
+const PlayButtonOverlay = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-top: 0.7rem solid transparent;
+    border-bottom: 0.7rem solid transparent;
+    border-left: 1.1rem solid white;
+  }
+`;
+
+const getYoutubeVideoId = (videoUrl) => videoUrl.split("/embed/").pop();
 
 const ProjectCard = ({ name, description, uri, image, videoUrl, authorName }) => {
   const navigate = useNavigate();
@@ -63,12 +86,13 @@ const ProjectCard = ({ name, description, uri, image, videoUrl, authorName }) =>
   return (
     <CardContainer>
       {videoUrl ? (
-        <ProjectVideo
-          src={videoUrl}
-          title={name}
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <ProjectVideoThumbWrapper onClick={() => onCardTitleClick(uri)}>
+          <ProjectImage
+            src={`https://img.youtube.com/vi/${getYoutubeVideoId(videoUrl)}/hqdefault.jpg`}
+            alt={name}
+          />
+          <PlayButtonOverlay />
+        </ProjectVideoThumbWrapper>
       ) : image ? (
         <ProjectImage src={resolveAssetPath(image)} alt={name} />
       ) : null}

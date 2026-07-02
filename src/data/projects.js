@@ -12,8 +12,7 @@ export const projects = [
     uri: "fracture-detection",
     authorName: "Igor Starikov",
     website: "https://hiinomaru.github.io/",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-X7tW-_kQR-4eXya7J1MXb5txqMn53wHQ0w&s",
+    image: "card_covers/igor-starikov.jpg",
     description:
       "A project that detects fractures in medical images using deep learning.",
   },
@@ -34,7 +33,6 @@ export const projects = [
       "https://image.pollinations.ai/prompt/Optical%20character%20recognition%20scanner%20reading%20handwriting%20dark%20blue%20neon%20theme?width=800&height=500&nologo=true",
     description:
       "An Optical Character Recognition (OCR) system that transforms handwritten text into digital content using deep learning",
-    text: "The project 'Ink to Digital Intelligence,' is a sophisticated Optical Character Recognition (OCR) system designed to accurately digitize handwritten text. Utilizing a robust system pipeline implemented in PyTorch, the project employs an attention-based model to handle the nuances of character recognition. After extensive training, the model demonstrated high performance on a validation set of 41,292 samples, achieving a validation accuracy of 84.01% and a Character Error Rate (CER) of 4.39%. This capability is showcased through the successful recognition of diverse handwritten names However, the system faces specific technical challenges, such as handling 'unreadable' inputs that may result in empty or incorrect predictions, and managing 'visual noise' from pre-printed form labels like 'NOM:' or 'PRENOM:' that can interfere with handwriting extraction. Additionally, character ambiguity the subtle differences in how individuals write remains a primary factor contributing to the remaining error rate. Ultimately, the project provides a comprehensive look at the pipeline, dataset training, and performance metrics required to transform physical handwriting into digital intelligence.",
   },
   {
     name: "AI Assistant for Hospital Information Systems",
@@ -96,7 +94,29 @@ export const projects = [
     website:
       "https://drive.google.com/file/d/11Vsaknk4KG123IWcEQOGC8XHdhLBIBhn/view?usp=sharing",
     image: "card_covers/lisa-papitsch.png",
-    slidesUrl: "presentations/lisa-papitsch.pdf",
+    slidesPdf: "presentations/lisa-papitsch.pdf",
+    slides: [
+      "presentations/lisa-papitsch-slides/slide-01.jpg",
+      "presentations/lisa-papitsch-slides/slide-02.jpg",
+      "presentations/lisa-papitsch-slides/slide-03.jpg",
+      "presentations/lisa-papitsch-slides/slide-04.jpg",
+      "presentations/lisa-papitsch-slides/slide-05.jpg",
+      "presentations/lisa-papitsch-slides/slide-06.jpg",
+      "presentations/lisa-papitsch-slides/slide-07.jpg",
+      "presentations/lisa-papitsch-slides/slide-08.jpg",
+      "presentations/lisa-papitsch-slides/slide-09.jpg",
+      "presentations/lisa-papitsch-slides/slide-10.jpg",
+      "presentations/lisa-papitsch-slides/slide-11.jpg",
+      "presentations/lisa-papitsch-slides/slide-12.jpg",
+      "presentations/lisa-papitsch-slides/slide-13.jpg",
+      "presentations/lisa-papitsch-slides/slide-14.jpg",
+      "presentations/lisa-papitsch-slides/slide-15.jpg",
+      "presentations/lisa-papitsch-slides/slide-16.jpg",
+      "presentations/lisa-papitsch-slides/slide-17.jpg",
+      "presentations/lisa-papitsch-slides/slide-18.jpg",
+      "presentations/lisa-papitsch-slides/slide-19.jpg",
+      "presentations/lisa-papitsch-slides/slide-20.jpg",
+    ],
   },
   {
     name: "Garbage In, Garbage Out: Preparing Data for AOE4 Strategy Discovery",
@@ -113,19 +133,5 @@ export const projects = [
     description:
       "A look into multi-agent communication patterns and how they perform",
     videoUrl: "https://www.youtube.com/embed/kQrmWSo3erQ",
-  },
-  {
-    name: "Slides Project",
-    uri: "slides-project",
-    description: "Test project to test slides visualization",
-    slides: [
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-     "https://www.slideegg.com/image/catalog/100860-best-ppt-templates-for-project-presentation.png",
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-     "https://powerpointschool.com/wp-content/uploads/2018/05/Animated-PowerPoint-Presentation-Slide-Template-by-PowerPoint-School.png",
-    ]
   },
 ];
