@@ -36,7 +36,7 @@ export const projects = [
     image:
       "https://image.pollinations.ai/prompt/Optical%20character%20recognition%20scanner%20reading%20handwriting%20dark%20blue%20neon%20theme?width=800&height=500&nologo=true",
     description:
-      "An Optical Character Recognition (OCR) system that transforms handwritten text into digital content using deep learning",
+      "An Optical Character Recognition (OCR) system that transforms handwritten text into digital content using deep learning.",
   },
   {
     name: "AI Assistant for Hospital Information Systems",
@@ -164,7 +164,7 @@ export const projects = [
     category: "systems",
     authorName: "Arina Iusupova",
     description:
-      "A look into multi-agent communication patterns and how they perform",
+      "A look into multi-agent communication patterns and how they perform.",
     videoUrl: "https://www.youtube.com/embed/kQrmWSo3erQ",
   },
 ];
