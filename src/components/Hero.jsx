@@ -92,7 +92,8 @@ export default function Hero({ fade = 1 }) {
         <HeroTitle>I spy with my little AI</HeroTitle>
         <AboutContent>
           <p>
-            Discover a diverse collection of projects created by University of Klagenfurt students. Explore innovative ideas, research, and creative solutions spanning artificial intelligence, software development, cybersecurity, digital media, and interactive technologies.
+            Discover a diverse collection of projects created by University of Klagenfurt students.
+            Explore innovative ideas, research, and creative solutions spanning artificial intelligence, software development, cybersecurity, digital media, and interactive technologies.
           </p>
         </AboutContent>
       </Content>
