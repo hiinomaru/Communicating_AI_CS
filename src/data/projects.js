@@ -2,6 +2,7 @@ export const projects = [
   {
     name: "Phishing Email Detection using NLP",
     uri: "phishing-email-detection",
+    category: "security",
     authorName: "Klodian Matjani",
     website: "https://klodianm12.github.io/cyber-ml/",
     image: "card_covers/klodian-matjani.png",
@@ -10,6 +11,7 @@ export const projects = [
   {
     name: "Fracture Detection",
     uri: "fracture-detection",
+    category: "health",
     authorName: "Igor Starikov",
     website: "https://hiinomaru.github.io/",
     image: "card_covers/igor-starikov.jpg",
@@ -19,6 +21,7 @@ export const projects = [
   {
     name: "WebSecAI",
     uri: "websecai",
+    category: "security",
     authorName: "Beatrice Beacco",
     description:
       "A project that automates web security testing using an agentic AI framework.",
@@ -27,6 +30,7 @@ export const projects = [
   {
     name: "Ink to Digital Intelligence",
     uri: "ink-to-digital-intelligence",
+    category: "systems",
     authorName: "Amr Mohamed Aboalsaoud",
     website: "https://amromohabosaoud.github.io/OCR_Application/",
     image:
@@ -37,6 +41,7 @@ export const projects = [
   {
     name: "AI Assistant for Hospital Information Systems",
     uri: "ai-assistant-hospital-information-systems",
+    category: "health",
     authorName: "Richard Neumann",
     description:
       "A secure AI assistant for hospital systems that simplifies clinical documentation through voice commands.",
@@ -45,6 +50,7 @@ export const projects = [
   {
     name: "Evaluating Movie Recommendation Systems using LLMs",
     uri: "movie-recommendation-systems-llms",
+    category: "systems",
     authorName: "Rok Kovac",
     website: "https://rokkovach.github.io/kovac_650.070/",
     image: "card_covers/rok-kovac.png",
@@ -54,13 +60,35 @@ export const projects = [
   {
     name: "Hunting the Duck",
     uri: "hunting-the-duck",
+    category: "security",
     authorName: "Nils Klenk",
     description:
       "Layered defenses and Wazuh-based behavioral detection against RubberDucky keystroke-injection attacks on Windows.",
+    image: "card_covers/nils-klenk.png",
+    slides: [
+      "presentations/nils-klenk-slides/slide-01.png",
+      "presentations/nils-klenk-slides/slide-02.png",
+      "presentations/nils-klenk-slides/slide-03.png",
+      "presentations/nils-klenk-slides/slide-04.png",
+      "presentations/nils-klenk-slides/slide-05.png",
+      "presentations/nils-klenk-slides/slide-06.png",
+      "presentations/nils-klenk-slides/slide-07.png",
+      "presentations/nils-klenk-slides/slide-08.png",
+      "presentations/nils-klenk-slides/slide-09.png",
+      "presentations/nils-klenk-slides/slide-10.png",
+      "presentations/nils-klenk-slides/slide-11.png",
+      "presentations/nils-klenk-slides/slide-12.png",
+      "presentations/nils-klenk-slides/slide-13.png",
+      "presentations/nils-klenk-slides/slide-14.png",
+      "presentations/nils-klenk-slides/slide-15.png",
+      "presentations/nils-klenk-slides/slide-16.png",
+      "presentations/nils-klenk-slides/slide-17.png",
+    ],
   },
   {
     name: "Lung Mask Segmentation with SAM",
     uri: "lung-mask-segmentation-sam",
+    category: "health",
     authorName: "Mitra Barkeshloomansouri",
     website: "https://mitramansouri.github.io/sam-lung-segmentation/",
     image: "card_covers/mitra-barkeshloomansouri.png",
@@ -70,6 +98,7 @@ export const projects = [
   {
     name: "The Zero-Day Trap: Can AI Stop a Scam it Has Never Seen Before?",
     uri: "zero-day-trap",
+    category: "security",
     authorName: "Christos Tasioudis",
     description:
       'How RoBERTa models bridges the "Generalization Gap" by detecting the semantic intent of "Zero-Day" phishing attacks that traditional filters miss.',
@@ -78,6 +107,7 @@ export const projects = [
   {
     name: "Does the News Influence the Crypto and Stock Market the Next Day?",
     uri: "news-influence-crypto-stock-market",
+    category: "systems",
     authorName: "Lukas Egger",
     description:
       "FinBERT predicts market direction from headlines and tests signals with a trading backtest.",
@@ -88,6 +118,7 @@ export const projects = [
   {
     name: "A Case Study: Solving A Murder using Machine Learning Methods",
     uri: "solving-a-murder-with-ml",
+    category: "systems",
     authorName: "Lisa Papitsch",
     description:
       "Help solve a crime by using the naive bayes classifier to find the cold-blooded murderer of a journalist based on statistical analysis and linguistic data.",
@@ -121,6 +152,7 @@ export const projects = [
   {
     name: "Garbage In, Garbage Out: Preparing Data for AOE4 Strategy Discovery",
     uri: "garbage-in-garbage-out-aoe4",
+    category: "systems",
     authorName: "Deniese Lafleur",
     description:
       "How careful data preparation, not a bigger model, took AOE4 strategy classification from 82% to 99%.",
@@ -129,6 +161,7 @@ export const projects = [
   {
     name: "Multi-agent Communication Patterns comparison: Agents-as-Tools vs Handoff",
     uri: "multi-agent-communication-patterns",
+    category: "systems",
     authorName: "Arina Iusupova",
     description:
       "A look into multi-agent communication patterns and how they perform",

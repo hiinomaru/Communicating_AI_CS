@@ -1,76 +1,107 @@
-import ProjectCard from "../components/ProjectCard";
+import { useEffect, useRef, useState } from "react";
+import CategorySection from "../components/CategorySection";
 import TeamGrid from "../components/TeamGrid";
+import Hero from "../components/Hero";
 import { projects } from "../data/projects";
+import { categories } from "../data/categories";
 import { teamMembers } from "../data/teamMembers";
-import styled from "styled-components";
+import { useMatrixRainCanvas } from "../hooks/useMatrixRainCanvas";
+import styled, { keyframes } from "styled-components";
+
+const drift = keyframes`
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.1); }
+`;
 
 const Page = styled.div`
+  position: relative;
   color: white;
   background: #0f172a;
   min-height: 100vh;
 `;
 
-const ProjectsGrid = styled.div`
-  margin: 3rem;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+const CanvasBg = styled.canvas`
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 `;
 
-const AboutSection = styled.section`
-  padding: 40px 40px 0;
+const ProjectsWrap = styled.div`
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 23, 42, ${(props) => props.$opacity});
 `;
 
-const AboutContent = styled.div`
-  max-width: 760px;
-  margin: 24px auto 0;
-  text-align: left;
-  line-height: 1.7;
-  color: #cbd5e1;
+const Blob = styled.div`
+  position: fixed;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  animation: ${drift} 16s ease-in-out infinite;
 
-  p + p {
-    margin-top: 16px;
+  &.one {
+    top: -120px;
+    left: -120px;
+    background: #6366f1;
+  }
+  &.two {
+    top: 20%;
+    right: -160px;
+    background: #ec4899;
+    animation-delay: -6s;
+  }
+  &.three {
+    bottom: -160px;
+    left: 30%;
+    background: #22d3ee;
+    animation-delay: -11s;
   }
 `;
 
 export default function Home() {
+  const canvasRef = useRef(null);
+  const [heroFade, setHeroFade] = useState(1);
+  const [projectsFade, setProjectsFade] = useState(0);
+
+  useMatrixRainCanvas(canvasRef);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const progress = window.scrollY / window.innerHeight;
+      setHeroFade(Math.max(0, 1 - progress * 2));
+      setProjectsFade(Math.min(0.88, Math.max(0, (progress - 0.25) * 2)));
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const grouped = categories.map((category) => ({
+    category,
+    items: projects.filter((p) => p.category === category.key),
+  }));
+
   return (
     <Page id="top">
-      <AboutSection id="about">
-        <h1>I spy with my little AI</h1>
-        <AboutContent>
-          <p>
-            Communicating AI & CS showcases projects built around artificial
-            intelligence, computer science, and practical problem solving.
-          </p>
-          <p>
-            The goal is to present projects and team members in a simple,
-            navigable interface.
-          </p>
-        </AboutContent>
-      </AboutSection>
+      <CanvasBg ref={canvasRef} />
+      <Blob className="one" />
+      <Blob className="two" />
+      <Blob className="three" />
 
-      <ProjectsGrid id="projects">
-        {projects.map((p, i) => (
-          <ProjectCard
-            key={i}
-            name={p.name}
-            uri={p.uri}
-            description={p.description}
-            image={p.image}
-            videoUrl={p.videoUrl}
-            authorName={p.authorName}
-          />
+      <Hero fade={heroFade} />
+
+      <ProjectsWrap id="projects" $opacity={projectsFade}>
+        {grouped.map(({ category, items }) => (
+          <CategorySection key={category.key} category={category} projects={items} />
         ))}
-      </ProjectsGrid>
+      </ProjectsWrap>
 
       <TeamGrid id="team" members={teamMembers} />
     </Page>

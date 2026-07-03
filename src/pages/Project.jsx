@@ -172,9 +172,9 @@ export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    if (project) document.title = `${project.name} — AI&CS Projects`;
+    if (project) document.title = `${project.name} — I spy with my little AI`;
     return () => {
-      document.title = "AI&CS Projects";
+      document.title = "I spy with my little AI";
     };
   }, [project]);
 

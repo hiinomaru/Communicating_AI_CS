@@ -2,6 +2,8 @@ import styled from "styled-components";
 import TeamMemberCard from "./TeamMemberCard";
 
 const Section = styled.section`
+  position: relative;
+  z-index: 1;
   padding: 72px 0;
   background: #0f172a;
 `;
