@@ -1,42 +1,54 @@
 export const teamMembers = [
   {
-    name: "Alex White",
-    role: "Co-Founder, Developer",
-    avatar: "team/team-1.jpg",
-  },
-  {
-    name: "Sarah Lee",
-    role: "Co-Founder, Developer",
-    avatar: "team/team-2.jpg",
-  },
-  {
-    name: "Brandon Smith",
-    role: "Project Manager",
-    avatar: "team/team-3.jpg",
-  },
-  {
-    name: "Allison Carter",
-    role: "UI Designer",
-    avatar: "team/team-4.jpg",
+    name: "Beatrice Beacco",
+    avatar: "team/beatrice-beacco.webp",
   },
   {
     name: "Amr Mohamed Aboalsaoud",
-    role: "Web Developer",
     avatar: "team/Amr_Mohamed.jpeg",
   },
   {
-    name: "Trinity Page",
-    role: "UX Designer",
-    avatar: "team/team-6.jpg",
+    name: "Richard Neumann",
+    avatar: "team/richard-neumann.jpg",
   },
   {
-    name: "Avery Key",
-    role: "Office Manager",
-    avatar: "team/team-7.jpg",
+    name: "Rok Kovac",
+    avatar: "team/rok-kovac.jpg",
   },
   {
-    name: "Brandon Wayne",
-    role: "Front-End Developer",
-    avatar: "team/team-8.jpg",
+    name: "Nils Klenk",
+    avatar: "team/nils-klenk.png",
+  },
+  {
+    name: "Mitra Barkeshloomansouri",
+    avatar: "team/mitra-barkeshloomansouri.jpg",
+  },
+  {
+    name: "Igor Starikov",
+    avatar: "team/igor-starikov.jpg",
+  },
+  {
+    name: "Christos Tasioudis",
+    avatar: "team/christos-tasioudis.jpg",
+  },
+  {
+    name: "Klodian Matjani",
+    avatar: "team/klodian-matjani.jpeg",
+  },
+  {
+    name: "Lukas Egger",
+    avatar: "team/lukas-egger.jpg",
+  },
+  {
+    name: "Lisa Papitsch",
+    avatar: "team/lisa-papitsch.jpeg",
+  },
+  {
+    name: "Deniese Lafleur",
+    avatar: "team/deniese-lafleur.jpeg",
+  },
+  {
+    name: "Arina Iusupova",
+    avatar: "team/arina-iusupova.jpeg",
   },
 ];

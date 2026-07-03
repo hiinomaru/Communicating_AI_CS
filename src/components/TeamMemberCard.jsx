@@ -20,23 +20,13 @@ const Name = styled.h3`
   font-weight: 500;
 `;
 
-const Role = styled.p`
-  margin: 7px 0 0;
-  color: #ffffff;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-`;
-
-export default function TeamMemberCard({ name, role, avatar }) {
+export default function TeamMemberCard({ name, avatar }) {
   const avatarPath = `${import.meta.env.BASE_URL}${avatar}`;
 
   return (
     <Card>
       <Avatar src={avatarPath} alt={`${name} avatar`} />
       <Name>{name}</Name>
-      <Role>{role}</Role>
     </Card>
   );
 }

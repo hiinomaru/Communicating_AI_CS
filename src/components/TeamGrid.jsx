@@ -2,6 +2,8 @@ import styled from "styled-components";
 import TeamMemberCard from "./TeamMemberCard";
 
 const Section = styled.section`
+  position: relative;
+  z-index: 1;
   padding: 72px 0;
   background: #0f172a;
 `;
@@ -35,9 +37,9 @@ const Grid = styled.div`
   }
 `;
 
-export default function TeamGrid({ members }) {
+export default function TeamGrid({ id, members }) {
   return (
-    <Section>
+    <Section id={id}>
       <Container>
         <Title>Meet the Team Behind Communicating AI & CS</Title>
 
@@ -46,7 +48,6 @@ export default function TeamGrid({ members }) {
             <TeamMemberCard
               key={member.name}
               name={member.name}
-              role={member.role}
               avatar={member.avatar}
             />
           ))}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { projects } from "../data/projects";
+import { resolveAssetPath } from "../utils/assetPath";
 
 const Page = styled.div`
   padding: 40px;
@@ -12,6 +13,12 @@ const Page = styled.div`
 
 const ProjectName = styled.h1`
   margin-bottom: 16px;
+`;
+
+const ProjectAuthor = styled.p`
+  margin-bottom: 16px;
+  color: #94a3b8;
+  font-size: 0.95rem;
 `;
 
 const ProjectDescription = styled.p`
@@ -63,6 +70,17 @@ const ProjectVideoContainer = styled.div`
   }
 `;
 
+const ProjectSlidesFallback = styled.a`
+  display: inline-block;
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+
+  &:hover {
+    color: #cbd5e1;
+  }
+`;
+
 const CarouselContainer = styled.div`
   position: relative;
   width: 100%;
@@ -84,7 +102,7 @@ const CarouselImageWrapper = styled.div`
 const CarouselImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: opacity 0.3s ease;
 `;
 
@@ -153,32 +171,29 @@ export default function Projects() {
   const project = projects.find((p) => p.uri === id);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  if (!project) {
-    return (
-      <Page>
-        <ProjectName>Project not found</ProjectName>
-      </Page>
-    );
-  }
+  useEffect(() => {
+    if (project) document.title = `${project.name} — I spy with my little AI`;
+    return () => {
+      document.title = "I spy with my little AI";
+    };
+  }, [project]);
 
   const handleNextSlide = () => {
-    if (project.slides && project.slides.length > 0) {
-      setCurrentSlide((prev) => (prev + 1) % project.slides.length);
+    if (project?.slides && project.slides.length > 0) {
+      setCurrentSlide((prev) => Math.min(prev + 1, project.slides.length - 1));
     }
   };
 
   const handlePrevSlide = () => {
-    if (project.slides && project.slides.length > 0) {
-      setCurrentSlide((prev) =>
-        prev === 0 ? project.slides.length - 1 : prev - 1
-      );
+    if (project?.slides && project.slides.length > 0) {
+      setCurrentSlide((prev) => Math.max(prev - 1, 0));
     }
   };
 
   // Keyboard navigation for carousel
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (project.slides && project.slides.length > 0) {
+      if (project?.slides && project.slides.length > 0) {
         if (e.key === "ArrowLeft") {
           handlePrevSlide();
         } else if (e.key === "ArrowRight") {
@@ -189,8 +204,15 @@ export default function Projects() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlide, project.slides, handleNextSlide, handlePrevSlide]);
+  }, [currentSlide, project?.slides, handleNextSlide, handlePrevSlide]);
 
+  if (!project) {
+    return (
+      <Page>
+        <ProjectName>Project not found</ProjectName>
+      </Page>
+    );
+  }
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -199,11 +221,14 @@ export default function Projects() {
   return (
     <Page>
       <ProjectName>{project.name}</ProjectName>
+      {project.authorName && <ProjectAuthor>By {project.authorName}</ProjectAuthor>}
       <ProjectDescription>{project.description}</ProjectDescription>
 
       {project.text && <ProjectText>{project.text}</ProjectText>}
 
-      {project.image && <ProjectImage src={project.image} alt={project.name} />}
+      {project.image && (
+        <ProjectImage src={resolveAssetPath(project.image)} alt={project.name} />
+      )}
 
       {project.videoUrl && (
         <ProjectVideoContainer>
@@ -231,7 +256,7 @@ export default function Projects() {
           <CarouselContainer>
             <CarouselImageWrapper>
               <CarouselImage
-                src={project.slides[currentSlide]}
+                src={resolveAssetPath(project.slides[currentSlide])}
                 alt={`Slide ${currentSlide + 1}`}
               />
               <SlideCounter>
@@ -242,12 +267,14 @@ export default function Projects() {
                   <NavButton
                     left
                     onClick={handlePrevSlide}
+                    disabled={currentSlide === 0}
                     aria-label="Previous slide"
                   >
                     ❮
                   </NavButton>
                   <NavButton
                     onClick={handleNextSlide}
+                    disabled={currentSlide === project.slides.length - 1}
                     aria-label="Next slide"
                   >
                     ❯
@@ -268,6 +295,16 @@ export default function Projects() {
                 />
               ))}
             </DotsContainer>
+          )}
+
+          {project.slidesPdf && (
+            <ProjectSlidesFallback
+              href={resolveAssetPath(project.slidesPdf)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download slides (PDF) ↗
+            </ProjectSlidesFallback>
           )}
         </div>
       )}
