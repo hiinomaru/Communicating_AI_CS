@@ -43,7 +43,7 @@ export const teamMembers = [
     name: "Lisa Papitsch",
     avatar: "team/lisa-papitsch.jpeg",
   },
-   {
+ {
     name: "Alizada Ibrahim",
     avatar: "team/alizadaibrahim.jpg",
   },  

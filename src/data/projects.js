@@ -8,7 +8,7 @@ export const projects = [
     image: "card_covers/klodian-matjani.png",
     description: "A project that identifies phishing emails using NLP models.",
   },
-    {
+  {
     name: "ML-based IDS",
     uri: "ml-based-ids",
     category: "security",
